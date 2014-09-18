@@ -25,6 +25,7 @@ const (
 	Remove
 	Rename
 	Chmod
+	CloseWrite
 )
 
 // String returns a string representation of the event in the form
@@ -46,6 +47,9 @@ func (e Event) String() string {
 	}
 	if e.Op&Chmod == Chmod {
 		events += "|CHMOD"
+	}
+	if e.Op&CloseWrite == CloseWrite {
+		events += "|CloseWrite"
 	}
 
 	if len(events) > 0 {
